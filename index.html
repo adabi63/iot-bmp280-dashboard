@@ -445,7 +445,7 @@
               <div class="num" id="suhu-max">--</div>
             </div>
           </div>
-          <div class="status-badge status-orange" id="status-suhu" style="max-width:150px">Menunggu...</div>
+          <div class="status-badge status-orange" id="status-suhu" style="max-width:150px">(￣o￣) . z Z</div>
         </div>
       </div>
     </section>
@@ -621,7 +621,7 @@
     function updateChart() {
       const config = {
         tekanan: { data: pressureHistory, color: '#ff6b6b' },
-        ketinggian: { data: levelHistory, color: '#38bdf8' },
+        level_air: { data: levelHistory, color: '#38bdf8' },
         suhu: { data: tempHistory, color: '#fb923c' }
       }[chartMode];
 
