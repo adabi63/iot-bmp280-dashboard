@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Dashboard BMP280 Pro</title>
+  <title>Dashboard BMP280 IoT TF</title>
   <link rel="icon" href="icon.png">
   <link
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap"
@@ -42,7 +42,6 @@
       line-height: 1.5;
     }
 
-    /* Container for desktop centering */
     .container {
       max-width: 1100px;
       margin: 0 auto;
@@ -93,20 +92,11 @@
     }
 
     @keyframes pulse {
-
-      0%,
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      50% {
-        opacity: 0.4;
-        transform: scale(0.8);
-      }
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
     }
 
-    /* ===== GRID SYSTEM ===== */
+    /* ===== GRID ===== */
     .grid-layout {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -114,19 +104,10 @@
       margin-bottom: 12px;
     }
 
-    .col-12 {
-      grid-column: span 12;
-    }
+    .col-12 { grid-column: span 12; }
+    .col-6  { grid-column: span 6; }
+    .col-4  { grid-column: span 4; }
 
-    .col-6 {
-      grid-column: span 6;
-    }
-
-    .col-4 {
-      grid-column: span 4;
-    }
-
-    /* ===== CARD ===== */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -137,8 +118,8 @@
 
     /* ===== SUHU BANNER ===== */
     .suhu-banner {
-      background: linear-gradient(135deg, rgba(251, 146, 60, 0.1) 0%, rgba(251, 146, 60, 0.02) 100%);
-      border: 1px solid rgba(251, 146, 60, 0.2);
+      background: linear-gradient(135deg, rgba(251,146,60,0.1) 0%, rgba(251,146,60,0.02) 100%);
+      border: 1px solid rgba(251,146,60,0.2);
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -155,7 +136,7 @@
     .suhu-banner .icon-wrap {
       width: 48px;
       height: 48px;
-      background: rgba(251, 146, 60, 0.15);
+      background: rgba(251,146,60,0.15);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -198,7 +179,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 260px; 
+      min-height: 260px;
       text-align: center;
     }
 
@@ -209,10 +190,7 @@
       margin: 0 auto 10px;
     }
 
-    .gauge-svg {
-      width: 100%;
-      height: auto;
-    }
+    .gauge-svg { width: 100%; height: auto; }
 
     .gauge-value {
       position: absolute;
@@ -241,29 +219,10 @@
       margin-top: 12px;
     }
 
-    .status-red {
-      background: rgba(255, 107, 107, 0.1);
-      color: var(--accent-red);
-      border: 1px solid rgba(255, 107, 107, 0.2);
-    }
-
-    .status-blue {
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--accent-blue);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-    }
-
-    .status-green {
-      background: rgba(52, 211, 153, 0.1);
-      color: var(--accent-green);
-      border: 1px solid rgba(52, 211, 153, 0.2);
-    }
-
-    .status-orange {
-      background: rgba(251, 146, 60, 0.1);
-      color: var(--accent-orange);
-      border: 1px solid rgba(251, 146, 60, 0.2);
-    }
+    .status-red    { background: rgba(255,107,107,0.1); color: var(--accent-red);    border: 1px solid rgba(255,107,107,0.2); }
+    .status-blue   { background: rgba(56,189,248,0.1);  color: var(--accent-blue);   border: 1px solid rgba(56,189,248,0.2); }
+    .status-green  { background: rgba(52,211,153,0.1);  color: var(--accent-green);  border: 1px solid rgba(52,211,153,0.2); }
+    .status-orange { background: rgba(251,146,60,0.1);  color: var(--accent-orange); border: 1px solid rgba(251,146,60,0.2); }
 
     /* ===== STATS ===== */
     .stat-card .label {
@@ -320,10 +279,7 @@
       color: var(--bg);
     }
 
-    .chart-wrap {
-      height: 180px;
-      width: 100%;
-    }
+    .chart-wrap { height: 180px; width: 100%; }
 
     /* ===== LOGS ===== */
     .log-list {
@@ -344,68 +300,449 @@
       gap: 10px;
     }
 
-    /* ===== RESPONSIVE FIXES ===== */
+    /* ===================================================
+       SETPOINT CONTROL PANEL — NEW
+    =================================================== */
+    .setpoint-card {
+      background: linear-gradient(135deg, rgba(52,211,153,0.06) 0%, rgba(56,189,248,0.04) 100%);
+      border: 1px solid rgba(52,211,153,0.25);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .sp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .sp-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .sp-title span {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-left: 6px;
+    }
+
+    /* Pompa status pill */
+    .pump-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-family: var(--mono);
+      transition: all 0.4s;
+      border: 1px solid transparent;
+    }
+
+    .pump-pill.on {
+      background: rgba(52,211,153,0.15);
+      border-color: rgba(52,211,153,0.35);
+      color: var(--accent-green);
+    }
+
+    .pump-pill.off {
+      background: rgba(107,118,148,0.12);
+      border-color: rgba(107,118,148,0.25);
+      color: var(--muted);
+    }
+
+    .pump-pill .pdot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .pump-pill.on .pdot {
+      animation: pulse 1.2s ease-in-out infinite;
+      box-shadow: 0 0 6px var(--accent-green);
+    }
+
+    /* Slider section */
+    .sp-slider-section {
+      margin-bottom: 20px;
+    }
+
+    .sp-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .sp-slider-label {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .sp-value-display {
+      font-family: var(--mono);
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--accent-green);
+      line-height: 1;
+      min-width: 64px;
+      text-align: right;
+    }
+
+    .sp-value-display .sp-unit {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-left: 2px;
+    }
+
+    /* Custom range slider */
+    .sp-range {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .sp-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 1px var(--accent-green), 0 0 10px rgba(52,211,153,0.4);
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+
+    .sp-range::-webkit-slider-thumb:hover {
+      box-shadow: 0 0 0 1px var(--accent-green), 0 0 18px rgba(52,211,153,0.6);
+    }
+
+    .sp-range::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      border: 3px solid var(--bg);
+      cursor: pointer;
+    }
+
+    /* Tick marks */
+    .sp-ticks {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 2px;
+      margin-top: 6px;
+    }
+
+    .sp-tick {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--muted);
+    }
+
+    /* Water tank visual */
+    .tank-visual {
+      position: relative;
+      width: 100%;
+      height: 60px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .tank-fill-current {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 100%;
+      background: rgba(56,189,248,0.3);
+      border-right: 1px solid rgba(56,189,248,0.4);
+      transition: width 0.8s ease;
+    }
+
+    .tank-fill-setpoint {
+      position: absolute;
+      bottom: 0;
+      height: 100%;
+      width: 2px;
+      background: var(--accent-green);
+      box-shadow: 0 0 6px var(--accent-green);
+      transition: left 0.3s;
+    }
+
+    .tank-fill-setpoint::after {
+      content: 'SP';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      color: var(--accent-green);
+      white-space: nowrap;
+    }
+
+    .tank-label-current {
+      position: absolute;
+      bottom: 6px;
+      left: 8px;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    /* Estimasi waktu bar */
+    .est-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .est-label {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .est-value {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-yellow);
+    }
+
+    /* Mode buttons */
+    .sp-mode-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .mode-btn {
+      padding: 10px 6px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .mode-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .mode-btn.active-auto {
+      background: rgba(52,211,153,0.12);
+      border-color: rgba(52,211,153,0.4);
+      color: var(--accent-green);
+    }
+
+    .mode-btn.active-fill {
+      background: rgba(56,189,248,0.12);
+      border-color: rgba(56,189,248,0.4);
+      color: var(--accent-blue);
+    }
+
+    .mode-btn.active-off {
+      background: rgba(255,107,107,0.1);
+      border-color: rgba(255,107,107,0.3);
+      color: var(--accent-red);
+    }
+
+    /* Send button */
+    .sp-send-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      background: var(--accent-green);
+      color: #0e1117;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .sp-send-btn:hover {
+      background: #5eead4;
+      box-shadow: 0 4px 16px rgba(52,211,153,0.3);
+      transform: translateY(-1px);
+    }
+
+    .sp-send-btn:active {
+      transform: translateY(0);
+    }
+
+    .sp-send-btn:disabled {
+      background: var(--surface2);
+      color: var(--muted);
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    /* Feedback toast */
+    .sp-feedback {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      display: none;
+      transition: all 0.3s;
+    }
+
+    .sp-feedback.ok {
+      background: rgba(52,211,153,0.1);
+      border: 1px solid rgba(52,211,153,0.25);
+      color: var(--accent-green);
+      display: block;
+    }
+
+    .sp-feedback.err {
+      background: rgba(255,107,107,0.1);
+      border: 1px solid rgba(255,107,107,0.25);
+      color: var(--accent-red);
+      display: block;
+    }
+
+    /* Progress bar saat AUTO running */
+    .auto-progress-wrap {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .auto-progress-wrap.visible {
+      display: block;
+    }
+
+    .auto-progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.62rem;
+      color: var(--muted);
+      margin-bottom: 5px;
+      font-family: var(--mono);
+    }
+
+    .auto-progress-bar {
+      width: 100%;
+      height: 6px;
+      background: var(--surface2);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .auto-progress-fill {
+      height: 100%;
+      background: var(--accent-green);
+      border-radius: 4px;
+      width: 0%;
+      transition: width 1s linear;
+      box-shadow: 0 0 6px rgba(52,211,153,0.4);
+    }
+
+    /* ESP IP config */
+    .ip-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+
+    .ip-input {
+      flex: 1;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .ip-input:focus {
+      border-color: var(--accent-blue);
+    }
+
+    .ip-label {
+      font-size: 0.62rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      .col-md-6 {
-        grid-column: span 6;
-      }
+      .col-md-6  { grid-column: span 6; }
+      .col-md-12 { grid-column: span 12; }
 
-      .col-md-12 {
-        grid-column: span 12;
-      }
-
-      .suhu-banner {
-        justify-content: center;
-        text-align: center;
-      }
-
-      .suhu-mini-grid {
-        max-width: 100%;
-      }
-
-      .chart-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .chart-toggle {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .toggle-btn {
-        flex: 1;
-      }
+      .suhu-banner { justify-content: center; text-align: center; }
+      .suhu-mini-grid { max-width: 100%; }
+      .chart-header { flex-direction: column; align-items: flex-start; }
+      .chart-toggle { width: 100%; justify-content: space-between; }
+      .toggle-btn { flex: 1; }
     }
 
     @media (max-width: 480px) {
-      body {
-        padding: 12px;
-      }
-
-      .col-sm-12 {
-        grid-column: span 12;
-      }
-
-      .grid-layout {
-        gap: 8px;
-      }
-
-      .card {
-        padding: 16px;
-      }
-
-      .header-left .meta {
-        display: none;
-      }
-
-      /* Hide technical meta on tiny screens */
+      body { padding: 12px; }
+      .col-sm-12 { grid-column: span 12; }
+      .grid-layout { gap: 8px; }
+      .card { padding: 16px; }
+      .header-left .meta { display: none; }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
+
     <!-- HEADER -->
     <header class="header">
       <div class="header-left">
@@ -427,8 +764,10 @@
               <div class="suhu-mini">
                 <div class="label">Suhu</div>
               </div>
-              <div class="value"><span id="val-suhu">--</span><span
-                  style="font-size:0.5em; margin-left:4px; opacity:0.6">°C</span></div>
+              <div class="value">
+                <span id="val-suhu">--</span>
+                <span style="font-size:0.5em; margin-left:4px; opacity:0.6">°C</span>
+              </div>
             </div>
           </div>
           <div class="suhu-mini-grid">
@@ -456,11 +795,9 @@
         <div class="card gauge-card">
           <div class="gauge-wrapper">
             <svg class="gauge-svg" viewBox="0 0 160 110">
-              <path d="M 20 95 A 70 70 0 1 1 140 95" fill="none" stroke="#252d42" stroke-width="10"
-                stroke-linecap="round" />
+              <path d="M 20 95 A 70 70 0 1 1 140 95" fill="none" stroke="#252d42" stroke-width="10" stroke-linecap="round"/>
               <path id="gauge-arc-tekanan" d="M 20 95 A 70 70 0 1 1 140 95" fill="none" stroke="#ff6b6b"
-                stroke-width="10" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="220"
-                style="transition:0.8s" />
+                stroke-width="10" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="220" style="transition:0.8s"/>
             </svg>
             <div class="gauge-value">
               <span class="num" id="val-tekanan">--</span>
@@ -474,15 +811,13 @@
         <div class="card gauge-card">
           <div class="gauge-wrapper">
             <svg class="gauge-svg" viewBox="0 0 160 110">
-              <path d="M 20 95 A 70 70 0 1 1 140 95" fill="none" stroke="#252d42" stroke-width="10"
-                stroke-linecap="round" />
+              <path d="M 20 95 A 70 70 0 1 1 140 95" fill="none" stroke="#252d42" stroke-width="10" stroke-linecap="round"/>
               <path id="gauge-arc-altitude" d="M 20 95 A 70 70 0 1 1 140 95" fill="none" stroke="#38bdf8"
-                stroke-width="10" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="220"
-                style="transition:0.8s" />
+                stroke-width="10" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="220" style="transition:0.8s"/>
             </svg>
             <div class="gauge-value">
               <span class="num" id="val-altitude">--</span>
-              <span class="unit">m</span>
+              <span class="unit">cm</span>
             </div>
           </div>
           <div class="status-badge status-blue" id="status-altitude">Level Air</div>
@@ -515,6 +850,115 @@
       </div>
     </section>
 
+    <!-- ============================================================
+         SETPOINT CONTROL PANEL — NEW SECTION
+    ============================================================ -->
+    <section class="grid-layout">
+      <div class="col-12">
+        <div class="setpoint-card">
+
+          <!-- Header row -->
+          <div class="sp-header">
+            <div class="sp-title">
+              Kontrol Setpoint
+              <span>Water Level Controller</span>
+            </div>
+            <div class="pump-pill off" id="pump-pill">
+              <span class="pdot"></span>
+              <span id="pump-pill-label">POMPA OFF</span>
+            </div>
+          </div>
+
+          <!-- IP ESP32 input -->
+          <div class="ip-row">
+            <span class="ip-label">IP ESP32</span>
+            <input class="ip-input" id="esp-ip" type="text" placeholder="192.168.1.x" value="192.168.1.100" />
+          </div>
+
+          <!-- Mode selector -->
+          <div class="sp-mode-row">
+            <button class="mode-btn" id="btn-mode-auto" onclick="selectMode('AUTO')">
+              ⚡ AUTO
+            </button>
+            <button class="mode-btn active-fill" id="btn-mode-fill" onclick="selectMode('FILL')">
+              🔁 FILL
+            </button>
+            <button class="mode-btn" id="btn-mode-off" onclick="selectMode('OFF')">
+              ⛔ OFF
+            </button>
+          </div>
+
+          <!-- Slider + value display -->
+          <div class="sp-slider-section">
+            <div class="sp-slider-row">
+              <span class="sp-slider-label">Setpoint Level</span>
+              <div style="flex:1"></div>
+              <div class="sp-value-display">
+                <span id="sp-display">50</span>
+                <span class="sp-unit">cm</span>
+              </div>
+            </div>
+
+            <input
+              class="sp-range"
+              id="sp-slider"
+              type="range"
+              min="0" max="90" step="1"
+              value="50"
+              oninput="onSliderMove(this.value)"
+            />
+
+            <div class="sp-ticks">
+              <span class="sp-tick">0</span>
+              <span class="sp-tick">10</span>
+              <span class="sp-tick">20</span>
+              <span class="sp-tick">30</span>
+              <span class="sp-tick">40</span>
+              <span class="sp-tick">50</span>
+              <span class="sp-tick">60</span>
+              <span class="sp-tick">70</span>
+              <span class="sp-tick">80</span>
+              <span class="sp-tick">90</span>
+            </div>
+
+            <!-- Mini tank visualization -->
+            <div class="tank-visual" id="tank-viz">
+              <div class="tank-fill-current" id="tank-current" style="width:0%"></div>
+              <div class="tank-fill-setpoint" id="tank-sp" style="left:55%"></div>
+              <span class="tank-label-current" id="tank-current-label">0.0 cm</span>
+            </div>
+
+            <!-- Estimasi waktu -->
+            <div class="est-row">
+              <span class="est-label">⏱ Estimasi waktu isi</span>
+              <span class="est-value" id="sp-est-time">~95.0 s</span>
+            </div>
+          </div>
+
+          <!-- Send button -->
+          <button class="sp-send-btn" id="sp-send-btn" onclick="sendSetpoint()">
+            <span id="sp-btn-icon">▶</span>
+            <span id="sp-btn-label">Kirim ke ESP32</span>
+          </button>
+
+          <!-- Progress bar AUTO -->
+          <div class="auto-progress-wrap" id="auto-progress-wrap">
+            <div class="auto-progress-label">
+              <span>Mengisi...</span>
+              <span id="auto-progress-pct">0%</span>
+            </div>
+            <div class="auto-progress-bar">
+              <div class="auto-progress-fill" id="auto-progress-fill"></div>
+            </div>
+          </div>
+
+          <!-- Feedback -->
+          <div class="sp-feedback" id="sp-feedback"></div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- CHART -->
     <section class="grid-layout">
       <div class="col-12">
@@ -534,7 +978,7 @@
       </div>
     </section>
 
-    <!-- FOOTER INFO & LOGS -->
+    <!-- FOOTER -->
     <section class="grid-layout">
       <div class="col-6 col-md-12">
         <div class="grid-layout" style="margin:0">
@@ -561,7 +1005,8 @@
         </div>
       </div>
     </section>
-  </div>
+
+  </div><!-- /container -->
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="module">
@@ -576,15 +1021,16 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
+    const db  = getDatabase(app);
 
     let pressureHistory = [], levelHistory = [], tempHistory = [];
     let minP = Infinity, maxP = -Infinity, sumP = 0, countP = 0;
     let minS = Infinity, maxS = -Infinity, sumS = 0, countS = 0;
     let chartMode = 'tekanan';
     let uptimeStart = Date.now();
+    let latestLevel = 0;
 
-    // Chart Setup
+    // ── Chart ──────────────────────────────────────────────────────
     const ctx = document.getElementById('chart').getContext('2d');
     const chartInst = new Chart(ctx, {
       type: 'line',
@@ -620,81 +1066,273 @@
 
     function updateChart() {
       const config = {
-        tekanan: { data: pressureHistory, color: '#ff6b6b' },
-        level_air: { data: levelHistory, color: '#38bdf8' },
-        suhu: { data: tempHistory, color: '#fb923c' }
+        tekanan:  { data: pressureHistory, color: '#ff6b6b' },
+        level_air:{ data: levelHistory,   color: '#38bdf8' },
+        suhu:     { data: tempHistory,     color: '#fb923c' }
       }[chartMode];
-
       chartInst.data.labels = config.data.map(() => '');
-      chartInst.data.datasets[0].data = config.data;
+      chartInst.data.datasets[0].data  = config.data;
       chartInst.data.datasets[0].borderColor = config.color;
       chartInst.data.datasets[0].backgroundColor = config.color + '22';
       chartInst.update('none');
     }
 
     function setGauge(id, value, min, max) {
-      const arc = document.getElementById('gauge-arc-' + id);
+      const arc  = document.getElementById('gauge-arc-' + id);
       const frac = Math.min(1, Math.max(0, (value - min) / (max - min)));
       arc.style.strokeDashoffset = 220 * (1 - frac);
     }
 
-    function addLog(msg) {
+    function addLog(msg, color) {
       const list = document.getElementById('log-list');
       const time = new Date().toLocaleTimeString('id-ID', { hour12: false });
       const item = document.createElement('div');
       item.className = 'log-item';
-      item.innerHTML = `<span style="color:var(--muted)">${time}</span> <span>${msg}</span>`;
+      item.innerHTML = `<span style="color:var(--muted)">${time}</span>`
+                     + `<span style="color:${color||'inherit'}">${msg}</span>`;
       list.prepend(item);
-      if (list.children.length > 5) list.lastChild.remove();
+      if (list.children.length > 8) list.lastChild.remove();
     }
 
+    // ── Firebase listener ──────────────────────────────────────────
     onValue(ref(db, "sensor"), (snap) => {
       const data = snap.val();
       if (!data) return;
 
-      const p = parseFloat(data.tekanan);
-      const s = parseFloat(data.suhu);
+      const p     = parseFloat(data.tekanan);
+      const s     = parseFloat(data.suhu);
       const level = parseFloat(data.level_air);
+      latestLevel = level;
 
-      // Updates
-      document.getElementById('val-suhu').innerText = s.toFixed(1);
+      document.getElementById('val-suhu').innerText    = s.toFixed(1);
       document.getElementById('val-tekanan').innerText = p.toFixed(0);
-      document.getElementById('val-altitude').innerText = level.toFixed(1);
+      document.getElementById('val-altitude').innerText= level.toFixed(1);
 
-      // Stats Temp
+      // Suhu stats
       if (s < minS) minS = s; if (s > maxS) maxS = s; sumS += s; countS++;
       document.getElementById('suhu-min').innerText = minS.toFixed(1);
       document.getElementById('suhu-max').innerText = maxS.toFixed(1);
-      document.getElementById('suhu-avg').innerText = (sumS / countS).toFixed(1);
+      document.getElementById('suhu-avg').innerText = (sumS/countS).toFixed(1);
 
-      // Stats Pressure
+      // Tekanan stats
       if (p < minP) minP = p; if (p > maxP) maxP = p; sumP += p; countP++;
-      document.getElementById('stat-min').innerText = minP.toFixed(1);
-      document.getElementById('stat-max').innerText = maxP.toFixed(1);
-      document.getElementById('stat-avg').innerText = (sumP / countP).toFixed(1);
+      document.getElementById('stat-min').innerText     = minP.toFixed(1);
+      document.getElementById('stat-max').innerText     = maxP.toFixed(1);
+      document.getElementById('stat-avg').innerText     = (sumP/countP).toFixed(1);
       document.getElementById('stat-avg-sub').innerText = `${countP} sampel`;
 
       setGauge('tekanan', p, 950, 1050);
       setGauge('altitude', level, 0, 95);
 
-      pressureHistory.push(p);
-      levelHistory.push(level);
-      tempHistory.push(s);
-      if (pressureHistory.length > 30) {
-        pressureHistory.shift();
-        levelHistory.shift();
-        tempHistory.shift();
-      }
+      pressureHistory.push(p); levelHistory.push(level); tempHistory.push(s);
+      if (pressureHistory.length > 30) { pressureHistory.shift(); levelHistory.shift(); tempHistory.shift(); }
       updateChart();
+
+      // Update tank current fill
+      const pct = (level / 90) * 100;
+      document.getElementById('tank-current').style.width = Math.min(pct, 100) + '%';
+      document.getElementById('tank-current-label').innerText = level.toFixed(1) + ' cm';
+
+      // Sync pompa state from Firebase
+      if (data.pompa !== undefined) {
+        const on = parseInt(data.pompa) === 1;
+        updatePumpPill(on);
+      }
+
+      // Sync mode from Firebase
+      if (data.mode) {
+        syncModeButtons(data.mode);
+      }
     });
 
     setInterval(() => {
       const sec = Math.floor((Date.now() - uptimeStart) / 1000);
-      document.getElementById('val-uptime').innerText = `${Math.floor(sec / 60)}m ${sec % 60}s`;
+      document.getElementById('val-uptime').innerText = `${Math.floor(sec/60)}m ${sec%60}s`;
     }, 1000);
 
-    addLog("Sistem Online");
-  </script>
-</body>
+    addLog("Sistem Online", '#34d399');
 
+    // ── Expose to global (called from non-module handlers) ─────────
+    window._addLog       = addLog;
+    window._latestLevel  = () => latestLevel;
+  </script>
+
+  <script>
+    // ================================================================
+    // SETPOINT CONTROL LOGIC (non-module, runs after module loads)
+    // ================================================================
+
+    // Kalibrasi tabel (ms) — harus sama dengan di firmware
+    const CALIB = [
+      { level:  0, ms:      0 },
+      { level: 10, ms:  18500 },
+      { level: 20, ms:  33830 },
+      { level: 30, ms:  55790 },
+      { level: 40, ms:  74860 },
+      { level: 50, ms:  95000 },
+      { level: 60, ms: 128060 },
+      { level: 70, ms: 144070 },
+      { level: 80, ms: 161850 },
+      { level: 90, ms: 180000 },
+    ];
+
+    function levelToMs(target) {
+      target = Math.min(90, Math.max(0, target));
+      for (let i = 1; i < CALIB.length; i++) {
+        if (target <= CALIB[i].level) {
+          const frac = (target - CALIB[i-1].level) / (CALIB[i].level - CALIB[i-1].level);
+          return CALIB[i-1].ms + frac * (CALIB[i].ms - CALIB[i-1].ms);
+        }
+      }
+      return CALIB[CALIB.length - 1].ms;
+    }
+
+    function msToStr(ms) {
+      const s = ms / 1000;
+      if (s < 60) return `~${s.toFixed(1)} s`;
+      const m = Math.floor(s / 60), r = (s % 60).toFixed(0);
+      return `~${m}m ${r}s`;
+    }
+
+    let selectedMode = 'FILL';
+    let autoProgressInterval = null;
+
+    // Slider movement
+    window.onSliderMove = function(val) {
+      document.getElementById('sp-display').innerText = val;
+      // update setpoint marker on tank
+      const pct = (parseInt(val) / 90) * 100;
+      document.getElementById('tank-sp').style.left = Math.min(pct, 98) + '%';
+      // update estimasi
+      const ms = levelToMs(parseInt(val));
+      document.getElementById('sp-est-time').innerText = msToStr(ms);
+    };
+
+    // Mode select
+    window.selectMode = function(mode) {
+      selectedMode = mode;
+      syncModeButtons(mode);
+    };
+
+    window.syncModeButtons = function(mode) {
+      const btns = {
+        AUTO: document.getElementById('btn-mode-auto'),
+        FILL: document.getElementById('btn-mode-fill'),
+        OFF : document.getElementById('btn-mode-off'),
+      };
+      Object.keys(btns).forEach(k => {
+        btns[k].className = 'mode-btn';
+      });
+      if (mode === 'AUTO') btns.AUTO.classList.add('active-auto');
+      if (mode === 'FILL') btns.FILL.classList.add('active-fill');
+      if (mode === 'OFF')  btns.OFF.classList.add('active-off');
+
+      // Update send button label
+      const labels = { AUTO: '▶ Isi ke Setpoint', FILL: '🔁 Aktifkan FILL', OFF: '⛔ Matikan Pompa' };
+      document.getElementById('sp-btn-label').innerText = labels[mode] || 'Kirim ke ESP32';
+    };
+
+    window.updatePumpPill = function(isOn) {
+      const pill  = document.getElementById('pump-pill');
+      const label = document.getElementById('pump-pill-label');
+      pill.className  = 'pump-pill ' + (isOn ? 'on' : 'off');
+      label.innerText = isOn ? 'POMPA ON' : 'POMPA OFF';
+    };
+
+    // Send setpoint to ESP32
+    window.sendSetpoint = async function() {
+      const ip    = document.getElementById('esp-ip').value.trim();
+      const level = parseInt(document.getElementById('sp-slider').value);
+      const mode  = selectedMode;
+      const btn   = document.getElementById('sp-send-btn');
+      const fb    = document.getElementById('sp-feedback');
+
+      if (!ip) {
+        showFeedback('err', '⚠ Masukkan IP ESP32 terlebih dahulu');
+        return;
+      }
+
+      // Build URL
+      const url = `http://${ip}/setpoint?level=${level}&mode=${mode}`;
+
+      btn.disabled = true;
+      document.getElementById('sp-btn-icon').innerText = '⏳';
+      document.getElementById('sp-btn-label').innerText = 'Mengirim...';
+      fb.className = 'sp-feedback';
+
+      try {
+        const resp = await fetch(url, { signal: AbortSignal.timeout(5000) });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const json = await resp.json();
+
+        showFeedback('ok',
+          `✅ Terkirim! Mode: ${json.mode} | SP: ${json.setpoint} cm | Est: ${msToStr(json.estimasiMs)}`
+        );
+        window._addLog && window._addLog(
+          `Setpoint ${level} cm → ${mode}`, '#34d399'
+        );
+
+        // Start progress bar if AUTO
+        if (mode === 'AUTO') {
+          startAutoProgress(json.estimasiMs);
+        } else {
+          stopAutoProgress();
+        }
+
+      } catch (e) {
+        showFeedback('err',
+          `❌ Gagal terhubung ke ${ip} — pastikan ESP32 nyala & se-WiFi<br><small>${e.message}</small>`
+        );
+        window._addLog && window._addLog(`Gagal kirim ke ${ip}`, '#ff6b6b');
+      } finally {
+        btn.disabled = false;
+        syncModeButtons(mode);
+      }
+    };
+
+    function showFeedback(type, msg) {
+      const fb = document.getElementById('sp-feedback');
+      fb.className = 'sp-feedback ' + type;
+      fb.innerHTML = msg;
+      if (type === 'ok') {
+        setTimeout(() => { fb.className = 'sp-feedback'; }, 6000);
+      }
+    }
+
+    function startAutoProgress(totalMs) {
+      stopAutoProgress();
+      const wrap = document.getElementById('auto-progress-wrap');
+      const fill = document.getElementById('auto-progress-fill');
+      const pct  = document.getElementById('auto-progress-pct');
+      wrap.classList.add('visible');
+
+      const start = Date.now();
+      autoProgressInterval = setInterval(() => {
+        const elapsed = Date.now() - start;
+        const ratio   = Math.min(elapsed / totalMs, 1);
+        const p       = (ratio * 100).toFixed(0);
+        fill.style.width = p + '%';
+        pct.innerText    = p + '%';
+        if (ratio >= 1) {
+          stopAutoProgress();
+          window._addLog && window._addLog('AUTO selesai — target tercapai', '#fbbf24');
+        }
+      }, 500);
+    }
+
+    function stopAutoProgress() {
+      if (autoProgressInterval) {
+        clearInterval(autoProgressInterval);
+        autoProgressInterval = null;
+      }
+      document.getElementById('auto-progress-wrap').classList.remove('visible');
+      document.getElementById('auto-progress-fill').style.width = '0%';
+    }
+
+    // Init slider display
+    onSliderMove(50);
+    syncModeButtons('FILL');
+  </script>
+
+</body>
 </html>
