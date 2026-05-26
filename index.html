@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Dashboard BMP280 IoT TF</title>
+  <title>Dashboard BMP280 Pro</title>
   <link rel="icon" href="icon.png">
   <link
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap"
@@ -92,8 +92,17 @@
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.8);
+      }
     }
 
     /* ===== GRID ===== */
@@ -104,9 +113,17 @@
       margin-bottom: 12px;
     }
 
-    .col-12 { grid-column: span 12; }
-    .col-6  { grid-column: span 6; }
-    .col-4  { grid-column: span 4; }
+    .col-12 {
+      grid-column: span 12;
+    }
+
+    .col-6 {
+      grid-column: span 6;
+    }
+
+    .col-4 {
+      grid-column: span 4;
+    }
 
     .card {
       background: var(--surface);
@@ -118,8 +135,8 @@
 
     /* ===== SUHU BANNER ===== */
     .suhu-banner {
-      background: linear-gradient(135deg, rgba(251,146,60,0.1) 0%, rgba(251,146,60,0.02) 100%);
-      border: 1px solid rgba(251,146,60,0.2);
+      background: linear-gradient(135deg, rgba(251, 146, 60, 0.1) 0%, rgba(251, 146, 60, 0.02) 100%);
+      border: 1px solid rgba(251, 146, 60, 0.2);
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -136,7 +153,7 @@
     .suhu-banner .icon-wrap {
       width: 48px;
       height: 48px;
-      background: rgba(251,146,60,0.15);
+      background: rgba(251, 146, 60, 0.15);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -179,22 +196,28 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 260px;
+      min-height: 300px;
       text-align: center;
+      padding-top: 24px;
     }
 
     .gauge-wrapper {
       position: relative;
       width: 100%;
-      max-width: 200px;
+      max-width: 170px;
       margin: 0 auto 10px;
     }
 
-    .gauge-svg { width: 100%; height: auto; }
+    .gauge-svg {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      /* ← pastikan arc tidak terpotong */
+    }
 
     .gauge-value {
       position: absolute;
-      bottom: 15%;
+      bottom: 12%;
       width: 100%;
     }
 
@@ -219,10 +242,29 @@
       margin-top: 12px;
     }
 
-    .status-red    { background: rgba(255,107,107,0.1); color: var(--accent-red);    border: 1px solid rgba(255,107,107,0.2); }
-    .status-blue   { background: rgba(56,189,248,0.1);  color: var(--accent-blue);   border: 1px solid rgba(56,189,248,0.2); }
-    .status-green  { background: rgba(52,211,153,0.1);  color: var(--accent-green);  border: 1px solid rgba(52,211,153,0.2); }
-    .status-orange { background: rgba(251,146,60,0.1);  color: var(--accent-orange); border: 1px solid rgba(251,146,60,0.2); }
+    .status-red {
+      background: rgba(255, 107, 107, 0.1);
+      color: var(--accent-red);
+      border: 1px solid rgba(255, 107, 107, 0.2);
+    }
+
+    .status-blue {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .status-green {
+      background: rgba(52, 211, 153, 0.1);
+      color: var(--accent-green);
+      border: 1px solid rgba(52, 211, 153, 0.2);
+    }
+
+    .status-orange {
+      background: rgba(251, 146, 60, 0.1);
+      color: var(--accent-orange);
+      border: 1px solid rgba(251, 146, 60, 0.2);
+    }
 
     /* ===== STATS ===== */
     .stat-card .label {
@@ -279,7 +321,10 @@
       color: var(--bg);
     }
 
-    .chart-wrap { height: 180px; width: 100%; }
+    .chart-wrap {
+      height: 180px;
+      width: 100%;
+    }
 
     /* ===== LOGS ===== */
     .log-list {
@@ -304,8 +349,8 @@
        SETPOINT CONTROL PANEL — NEW
     =================================================== */
     .setpoint-card {
-      background: linear-gradient(135deg, rgba(52,211,153,0.06) 0%, rgba(56,189,248,0.04) 100%);
-      border: 1px solid rgba(52,211,153,0.25);
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.06) 0%, rgba(56, 189, 248, 0.04) 100%);
+      border: 1px solid rgba(52, 211, 153, 0.25);
       border-radius: 16px;
       padding: 20px;
     }
@@ -348,14 +393,14 @@
     }
 
     .pump-pill.on {
-      background: rgba(52,211,153,0.15);
-      border-color: rgba(52,211,153,0.35);
+      background: rgba(52, 211, 153, 0.15);
+      border-color: rgba(52, 211, 153, 0.35);
       color: var(--accent-green);
     }
 
     .pump-pill.off {
-      background: rgba(107,118,148,0.12);
-      border-color: rgba(107,118,148,0.25);
+      background: rgba(107, 118, 148, 0.12);
+      border-color: rgba(107, 118, 148, 0.25);
       color: var(--muted);
     }
 
@@ -429,13 +474,13 @@
       border-radius: 50%;
       background: var(--accent-green);
       border: 3px solid var(--bg);
-      box-shadow: 0 0 0 1px var(--accent-green), 0 0 10px rgba(52,211,153,0.4);
+      box-shadow: 0 0 0 1px var(--accent-green), 0 0 10px rgba(52, 211, 153, 0.4);
       cursor: pointer;
       transition: box-shadow 0.2s;
     }
 
     .sp-range::-webkit-slider-thumb:hover {
-      box-shadow: 0 0 0 1px var(--accent-green), 0 0 18px rgba(52,211,153,0.6);
+      box-shadow: 0 0 0 1px var(--accent-green), 0 0 18px rgba(52, 211, 153, 0.6);
     }
 
     .sp-range::-moz-range-thumb {
@@ -478,8 +523,8 @@
       bottom: 0;
       left: 0;
       height: 100%;
-      background: rgba(56,189,248,0.3);
-      border-right: 1px solid rgba(56,189,248,0.4);
+      background: rgba(56, 189, 248, 0.3);
+      border-right: 1px solid rgba(56, 189, 248, 0.4);
       transition: width 0.8s ease;
     }
 
@@ -568,20 +613,20 @@
     }
 
     .mode-btn.active-auto {
-      background: rgba(52,211,153,0.12);
-      border-color: rgba(52,211,153,0.4);
+      background: rgba(52, 211, 153, 0.12);
+      border-color: rgba(52, 211, 153, 0.4);
       color: var(--accent-green);
     }
 
     .mode-btn.active-fill {
-      background: rgba(56,189,248,0.12);
-      border-color: rgba(56,189,248,0.4);
+      background: rgba(56, 189, 248, 0.12);
+      border-color: rgba(56, 189, 248, 0.4);
       color: var(--accent-blue);
     }
 
     .mode-btn.active-off {
-      background: rgba(255,107,107,0.1);
-      border-color: rgba(255,107,107,0.3);
+      background: rgba(255, 107, 107, 0.1);
+      border-color: rgba(255, 107, 107, 0.3);
       color: var(--accent-red);
     }
 
@@ -607,7 +652,7 @@
 
     .sp-send-btn:hover {
       background: #5eead4;
-      box-shadow: 0 4px 16px rgba(52,211,153,0.3);
+      box-shadow: 0 4px 16px rgba(52, 211, 153, 0.3);
       transform: translateY(-1px);
     }
 
@@ -635,15 +680,15 @@
     }
 
     .sp-feedback.ok {
-      background: rgba(52,211,153,0.1);
-      border: 1px solid rgba(52,211,153,0.25);
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.25);
       color: var(--accent-green);
       display: block;
     }
 
     .sp-feedback.err {
-      background: rgba(255,107,107,0.1);
-      border: 1px solid rgba(255,107,107,0.25);
+      background: rgba(255, 107, 107, 0.1);
+      border: 1px solid rgba(255, 107, 107, 0.25);
       color: var(--accent-red);
       display: block;
     }
@@ -682,7 +727,7 @@
       border-radius: 4px;
       width: 0%;
       transition: width 1s linear;
-      box-shadow: 0 0 6px rgba(52,211,153,0.4);
+      box-shadow: 0 0 6px rgba(52, 211, 153, 0.4);
     }
 
     /* ESP IP config */
@@ -720,22 +765,58 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      .col-md-6  { grid-column: span 6; }
-      .col-md-12 { grid-column: span 12; }
+      .col-md-6 {
+        grid-column: span 6;
+      }
 
-      .suhu-banner { justify-content: center; text-align: center; }
-      .suhu-mini-grid { max-width: 100%; }
-      .chart-header { flex-direction: column; align-items: flex-start; }
-      .chart-toggle { width: 100%; justify-content: space-between; }
-      .toggle-btn { flex: 1; }
+      .col-md-12 {
+        grid-column: span 12;
+      }
+
+      .suhu-banner {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .suhu-mini-grid {
+        max-width: 100%;
+      }
+
+      .chart-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .chart-toggle {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .toggle-btn {
+        flex: 1;
+      }
     }
 
     @media (max-width: 480px) {
-      body { padding: 12px; }
-      .col-sm-12 { grid-column: span 12; }
-      .grid-layout { gap: 8px; }
-      .card { padding: 16px; }
-      .header-left .meta { display: none; }
+      body {
+        padding: 12px;
+      }
+
+      .col-sm-12 {
+        grid-column: span 12;
+      }
+
+      .grid-layout {
+        gap: 8px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .header-left .meta {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -794,10 +875,12 @@
       <div class="col-6 col-sm-12">
         <div class="card gauge-card">
           <div class="gauge-wrapper">
-            <svg class="gauge-svg" viewBox="0 0 160 110">
-              <path d="M 20 95 A 70 70 0 1 1 140 95" fill="none" stroke="#252d42" stroke-width="10" stroke-linecap="round"/>
+            <svg class="gauge-svg" viewBox="0 0 160 120">
+              <path d="M 20 95 A 70 70 0 1 1 140 95" fill="none" stroke="#252d42" stroke-width="10"
+                stroke-linecap="round" />
               <path id="gauge-arc-tekanan" d="M 20 95 A 70 70 0 1 1 140 95" fill="none" stroke="#ff6b6b"
-                stroke-width="10" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="220" style="transition:0.8s"/>
+                stroke-width="10" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="220"
+                style="transition:0.8s" />
             </svg>
             <div class="gauge-value">
               <span class="num" id="val-tekanan">--</span>
@@ -810,10 +893,12 @@
       <div class="col-6 col-sm-12">
         <div class="card gauge-card">
           <div class="gauge-wrapper">
-            <svg class="gauge-svg" viewBox="0 0 160 110">
-              <path d="M 20 95 A 70 70 0 1 1 140 95" fill="none" stroke="#252d42" stroke-width="10" stroke-linecap="round"/>
+            <svg class="gauge-svg" viewBox="0 0 160 120">
+              <path d="M 20 95 A 70 70 0 1 1 140 95" fill="none" stroke="#252d42" stroke-width="10"
+                stroke-linecap="round" />
               <path id="gauge-arc-altitude" d="M 20 95 A 70 70 0 1 1 140 95" fill="none" stroke="#38bdf8"
-                stroke-width="10" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="220" style="transition:0.8s"/>
+                stroke-width="10" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="220"
+                style="transition:0.8s" />
             </svg>
             <div class="gauge-value">
               <span class="num" id="val-altitude">--</span>
@@ -851,7 +936,7 @@
     </section>
 
     <!-- ============================================================
-         SETPOINT CONTROL PANEL — NEW SECTION
+        SETPOINT CONTROL PANEL — NEW SECTION
     ============================================================ -->
     <section class="grid-layout">
       <div class="col-12">
@@ -899,14 +984,8 @@
               </div>
             </div>
 
-            <input
-              class="sp-range"
-              id="sp-slider"
-              type="range"
-              min="0" max="90" step="1"
-              value="50"
-              oninput="onSliderMove(this.value)"
-            />
+            <input class="sp-range" id="sp-slider" type="range" min="0" max="90" step="1" value="50"
+              oninput="onSliderMove(this.value)" />
 
             <div class="sp-ticks">
               <span class="sp-tick">0</span>
@@ -1021,7 +1100,7 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const db  = getDatabase(app);
+    const db = getDatabase(app);
 
     let pressureHistory = [], levelHistory = [], tempHistory = [];
     let minP = Infinity, maxP = -Infinity, sumP = 0, countP = 0;
@@ -1066,19 +1145,19 @@
 
     function updateChart() {
       const config = {
-        tekanan:  { data: pressureHistory, color: '#ff6b6b' },
-        level_air:{ data: levelHistory,   color: '#38bdf8' },
-        suhu:     { data: tempHistory,     color: '#fb923c' }
+        tekanan: { data: pressureHistory, color: '#ff6b6b' },
+        level_air: { data: levelHistory, color: '#38bdf8' },
+        suhu: { data: tempHistory, color: '#fb923c' }
       }[chartMode];
       chartInst.data.labels = config.data.map(() => '');
-      chartInst.data.datasets[0].data  = config.data;
+      chartInst.data.datasets[0].data = config.data;
       chartInst.data.datasets[0].borderColor = config.color;
       chartInst.data.datasets[0].backgroundColor = config.color + '22';
       chartInst.update('none');
     }
 
     function setGauge(id, value, min, max) {
-      const arc  = document.getElementById('gauge-arc-' + id);
+      const arc = document.getElementById('gauge-arc-' + id);
       const frac = Math.min(1, Math.max(0, (value - min) / (max - min)));
       arc.style.strokeDashoffset = 220 * (1 - frac);
     }
@@ -1089,7 +1168,7 @@
       const item = document.createElement('div');
       item.className = 'log-item';
       item.innerHTML = `<span style="color:var(--muted)">${time}</span>`
-                     + `<span style="color:${color||'inherit'}">${msg}</span>`;
+        + `<span style="color:${color || 'inherit'}">${msg}</span>`;
       list.prepend(item);
       if (list.children.length > 8) list.lastChild.remove();
     }
@@ -1099,26 +1178,26 @@
       const data = snap.val();
       if (!data) return;
 
-      const p     = parseFloat(data.tekanan);
-      const s     = parseFloat(data.suhu);
+      const p = parseFloat(data.tekanan);
+      const s = parseFloat(data.suhu);
       const level = parseFloat(data.level_air);
       latestLevel = level;
 
-      document.getElementById('val-suhu').innerText    = s.toFixed(1);
+      document.getElementById('val-suhu').innerText = s.toFixed(1);
       document.getElementById('val-tekanan').innerText = p.toFixed(0);
-      document.getElementById('val-altitude').innerText= level.toFixed(1);
+      document.getElementById('val-altitude').innerText = level.toFixed(1);
 
       // Suhu stats
       if (s < minS) minS = s; if (s > maxS) maxS = s; sumS += s; countS++;
       document.getElementById('suhu-min').innerText = minS.toFixed(1);
       document.getElementById('suhu-max').innerText = maxS.toFixed(1);
-      document.getElementById('suhu-avg').innerText = (sumS/countS).toFixed(1);
+      document.getElementById('suhu-avg').innerText = (sumS / countS).toFixed(1);
 
       // Tekanan stats
       if (p < minP) minP = p; if (p > maxP) maxP = p; sumP += p; countP++;
-      document.getElementById('stat-min').innerText     = minP.toFixed(1);
-      document.getElementById('stat-max').innerText     = maxP.toFixed(1);
-      document.getElementById('stat-avg').innerText     = (sumP/countP).toFixed(1);
+      document.getElementById('stat-min').innerText = minP.toFixed(1);
+      document.getElementById('stat-max').innerText = maxP.toFixed(1);
+      document.getElementById('stat-avg').innerText = (sumP / countP).toFixed(1);
       document.getElementById('stat-avg-sub').innerText = `${countP} sampel`;
 
       setGauge('tekanan', p, 950, 1050);
@@ -1147,14 +1226,14 @@
 
     setInterval(() => {
       const sec = Math.floor((Date.now() - uptimeStart) / 1000);
-      document.getElementById('val-uptime').innerText = `${Math.floor(sec/60)}m ${sec%60}s`;
+      document.getElementById('val-uptime').innerText = `${Math.floor(sec / 60)}m ${sec % 60}s`;
     }, 1000);
 
     addLog("Sistem Online", '#34d399');
 
     // ── Expose to global (called from non-module handlers) ─────────
-    window._addLog       = addLog;
-    window._latestLevel  = () => latestLevel;
+    window._addLog = addLog;
+    window._latestLevel = () => latestLevel;
   </script>
 
   <script>
@@ -1164,12 +1243,12 @@
 
     // Kalibrasi tabel (ms) — harus sama dengan di firmware
     const CALIB = [
-      { level:  0, ms:      0 },
-      { level: 10, ms:  18500 },
-      { level: 20, ms:  33830 },
-      { level: 30, ms:  55790 },
-      { level: 40, ms:  74860 },
-      { level: 50, ms:  95000 },
+      { level: 0, ms: 0 },
+      { level: 10, ms: 18500 },
+      { level: 20, ms: 33830 },
+      { level: 30, ms: 55790 },
+      { level: 40, ms: 74860 },
+      { level: 50, ms: 95000 },
       { level: 60, ms: 128060 },
       { level: 70, ms: 144070 },
       { level: 80, ms: 161850 },
@@ -1180,8 +1259,8 @@
       target = Math.min(90, Math.max(0, target));
       for (let i = 1; i < CALIB.length; i++) {
         if (target <= CALIB[i].level) {
-          const frac = (target - CALIB[i-1].level) / (CALIB[i].level - CALIB[i-1].level);
-          return CALIB[i-1].ms + frac * (CALIB[i].ms - CALIB[i-1].ms);
+          const frac = (target - CALIB[i - 1].level) / (CALIB[i].level - CALIB[i - 1].level);
+          return CALIB[i - 1].ms + frac * (CALIB[i].ms - CALIB[i - 1].ms);
         }
       }
       return CALIB[CALIB.length - 1].ms;
@@ -1198,7 +1277,7 @@
     let autoProgressInterval = null;
 
     // Slider movement
-    window.onSliderMove = function(val) {
+    window.onSliderMove = function (val) {
       document.getElementById('sp-display').innerText = val;
       // update setpoint marker on tank
       const pct = (parseInt(val) / 90) * 100;
@@ -1209,43 +1288,43 @@
     };
 
     // Mode select
-    window.selectMode = function(mode) {
+    window.selectMode = function (mode) {
       selectedMode = mode;
       syncModeButtons(mode);
     };
 
-    window.syncModeButtons = function(mode) {
+    window.syncModeButtons = function (mode) {
       const btns = {
         AUTO: document.getElementById('btn-mode-auto'),
         FILL: document.getElementById('btn-mode-fill'),
-        OFF : document.getElementById('btn-mode-off'),
+        OFF: document.getElementById('btn-mode-off'),
       };
       Object.keys(btns).forEach(k => {
         btns[k].className = 'mode-btn';
       });
       if (mode === 'AUTO') btns.AUTO.classList.add('active-auto');
       if (mode === 'FILL') btns.FILL.classList.add('active-fill');
-      if (mode === 'OFF')  btns.OFF.classList.add('active-off');
+      if (mode === 'OFF') btns.OFF.classList.add('active-off');
 
       // Update send button label
       const labels = { AUTO: '▶ Isi ke Setpoint', FILL: '🔁 Aktifkan FILL', OFF: '⛔ Matikan Pompa' };
       document.getElementById('sp-btn-label').innerText = labels[mode] || 'Kirim ke ESP32';
     };
 
-    window.updatePumpPill = function(isOn) {
-      const pill  = document.getElementById('pump-pill');
+    window.updatePumpPill = function (isOn) {
+      const pill = document.getElementById('pump-pill');
       const label = document.getElementById('pump-pill-label');
-      pill.className  = 'pump-pill ' + (isOn ? 'on' : 'off');
+      pill.className = 'pump-pill ' + (isOn ? 'on' : 'off');
       label.innerText = isOn ? 'POMPA ON' : 'POMPA OFF';
     };
 
     // Send setpoint to ESP32
-    window.sendSetpoint = async function() {
-      const ip    = document.getElementById('esp-ip').value.trim();
+    window.sendSetpoint = async function () {
+      const ip = document.getElementById('esp-ip').value.trim();
       const level = parseInt(document.getElementById('sp-slider').value);
-      const mode  = selectedMode;
-      const btn   = document.getElementById('sp-send-btn');
-      const fb    = document.getElementById('sp-feedback');
+      const mode = selectedMode;
+      const btn = document.getElementById('sp-send-btn');
+      const fb = document.getElementById('sp-feedback');
 
       if (!ip) {
         showFeedback('err', '⚠ Masukkan IP ESP32 terlebih dahulu');
@@ -1303,16 +1382,16 @@
       stopAutoProgress();
       const wrap = document.getElementById('auto-progress-wrap');
       const fill = document.getElementById('auto-progress-fill');
-      const pct  = document.getElementById('auto-progress-pct');
+      const pct = document.getElementById('auto-progress-pct');
       wrap.classList.add('visible');
 
       const start = Date.now();
       autoProgressInterval = setInterval(() => {
         const elapsed = Date.now() - start;
-        const ratio   = Math.min(elapsed / totalMs, 1);
-        const p       = (ratio * 100).toFixed(0);
+        const ratio = Math.min(elapsed / totalMs, 1);
+        const p = (ratio * 100).toFixed(0);
         fill.style.width = p + '%';
-        pct.innerText    = p + '%';
+        pct.innerText = p + '%';
         if (ratio >= 1) {
           stopAutoProgress();
           window._addLog && window._addLog('AUTO selesai — target tercapai', '#fbbf24');
@@ -1335,4 +1414,5 @@
   </script>
 
 </body>
+
 </html>
